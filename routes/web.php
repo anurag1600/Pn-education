@@ -147,12 +147,15 @@ Route::get('front/login','Frontcontroller@login');
 Route::post('front/login_save','Frontcontroller@login_save');
 
 
-
 ///////Add to cart /////////////////////////////
 
 Route::post('cart','Frontcontroller@addtocart');
 
 Route::get('front/cart','Frontcontroller@cart');
+
+Route::get('cart/update_quantity/{id}/{quantity}','FrontController@update_quantity');
+
+
 
 
 
@@ -228,7 +231,63 @@ Route::post('contect_save','ContectController@save');
 
 Route::get('admin/contect','ContectController@display');
 
+//////Model Controller/////////////
 
+Route::get('admin/modal','ModalController@modal');
+
+Route::post('admin/modal_save','ModalController@modal_save');
+
+Route::get('admin/modal','ModalController@display');
+
+Route::get('admin/modal_edit/{id}','ModalController@edit');
+
+Route::post('admin/modal_update','ModalController@update');
+
+Route::get('admin/modal_delete/{id}','ModalController@delete');
+
+
+////////////Workshop Controller ///////////////
+
+Route::get('admin/workshop','WorkshopController@workshop');
+
+Route::post('admin/workshop_save','WorkshopController@workshop_save');
+
+Route::get('admin/workshop','WorkshopController@display');
+
+Route::get('admin/workshop_edit/{id}','WorkshopController@edit');
+
+Route::post('admin/workshop_update','WorkshopController@update');
+
+Route::get('admin/workshop_delete/{id}','WorkshopController@delete');
+
+
+////About Frontcontroller///////////
+
+Route::get('about','Frontcontroller@about');
+
+Route::get('mpct','WorkshopController@mpct_workshop');
+
+Route::get('rjit','WorkshopController@rjit_workshop');
+
+Route::get('mi','WorkshopController@mi_workshop');
+
+Route::get('bentchair','WorkshopController@bentchair_workshop');
+
+/////coupan Controller/////////
+
+Route::get('admin/coupan','CoupanController@coupan');
+
+Route::post('admin/coupan_save','CoupanController@coupan_save');
+
+Route::get('admin/coupan','CoupanController@display');
+
+Route::get('admin/coupan_edit/{id}','CoupanController@edit');
+
+Route::post('admin/coupan_update','CoupanController@update');
+
+Route::get('admin/coupan_delete/{id}','CoupanController@delete');
+
+Route::get('checkout','Frontcontroller@checkout');
 
 
 

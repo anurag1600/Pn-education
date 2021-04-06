@@ -28,6 +28,17 @@ use App\Intern;
 
 use App\Contect;
 
+use App\Modal;
+
+use App\About;
+
+use Session;
+
+use DB;
+
+use Auth;
+
+
 
 class FrontController extends Controller
 {
@@ -38,7 +49,9 @@ class FrontController extends Controller
     	$cat=Category::all();
     	$nav=Navbar::all();
     	$online=Onlinelearn::all();
-    	return view('front.index',compact('dis','cou','cat','nav','online'));
+        $show=Modal::all();
+        
+    	return view('front.index',compact('dis','cou','cat','nav','online','show'));
     }
 
     public function signup()
@@ -54,18 +67,43 @@ class FrontController extends Controller
     	$d->email=$m->email;
     	$d->password=Hash::make($m->password);
     	$d->save();
+        if ($d) {
+            return redirect('front/login');
+        }
     }
 
     public function login()
     {	
     	$nav=Navbar::all();
+
     	return view('front.login',compact('nav'));
     }
 
-    public function login_save(Request $z)
+    public function login_save(Request $b)
+
     {
-    	$query= User::where('email',$z->email)->where('password',$z->password)->get()->first();
-    	print_r($query);
+        $session_id=Session::getId();
+        $data=$b->all();
+        if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']]))
+        {
+            Cart::where('session_id',$session_id)->update(['user_email'=>$data['email']]);
+            return redirect("front/cart")->with('message','Login Successfully');
+        }
+        else
+        {
+            return redirect("front/login")->with('message','Login Unsuccessfully');
+        }  
+
+    	// $query= User::where('email',$b->email)->where('password',$b->password)->get()->first();
+    	// print_r($query);
+
+        // if ($query) {
+        //     return redirect('checkout')->with('message','Login successfuly');
+        // }
+        // else{
+        //     return redirect('front/login')->with('message','Login Unsuccessfuly');
+        // }
+
     }
 
 
@@ -76,11 +114,16 @@ class FrontController extends Controller
 
     public function addtocart(Request $c)
     {
+
+        $session_id=Session::getId();
+        // print_r($session_id);
+        // die;
     	$d=new Cart;
     	$d->course_id=$c->course_id;
     	$d->course_name=$c->course_name;
     	$d->price=$c->price;
     	$d->image=$c->image;
+        $d->session_id=$session_id;
     	$d->save();
     	if ($d) {
     		return redirect('front/cart');
@@ -90,10 +133,35 @@ class FrontController extends Controller
 
      public function cart()
     {	
+        
+        
     	$nav=Navbar::all();
-    	$cart=Cart::all();
+        
+        if (Auth::check()) 
+        {
+           $user_email=Auth::user()->email;
+           $cart=Cart::where('user_email',$user_email)->get();
+        }
+        else
+        {
+            $session_id=Session::getId();
+            $cart=Cart::where('session_id',$session_id)->get();
+        
+        }
+    	
     	return view('front.cart',compact('nav','cart'));
     }
+
+
+    public function update_quantity($id=null,$quantity=null)
+    {
+    
+        // echo $id;
+        // echo $course_quantity;
+        DB::table('carts')->where('id',$id)->increment('quantity',$quantity);
+        return redirect('front/cart')->with('message','Product Quantity Has Been Updated');
+    }
+    
   
 
   //////////our team//////
@@ -130,6 +198,22 @@ class FrontController extends Controller
         $cont=Contect::all();
         return view('front.contect',compact('nav','cont'));
     }
+
+    public function about()
+    {
+        $nav=Navbar::all();
+       
+        return view('front.about',compact('nav'));
+    }
+
+    public function checkout()
+    {
+        $nav=Navbar::all();
+        return view('front.checkout',compact('nav'));
+    }
+
+    
+
 
 
 }

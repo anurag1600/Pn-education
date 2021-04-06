@@ -3,6 +3,7 @@
 
 <html lang="en" class="no-js">
 <head>
+	<link rel="link" type="text/css" href="https://firebasestorage.googleapis.com/v0/b/pn-images.appspot.com/o/logo%2Fcolorlogo.png?alt=media&token=0386f0aa-e1e1-4950-924f-3eedaa82d967">
 	<title>@yield("title")</title>
 
 	<meta charset="utf-8">
@@ -17,8 +18,14 @@
 	<link rel="stylesheet" type="text/css" href="{{url('css/fonts/iconfont/material-icons.css')}}" media="screen">
 	<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
 
+	
+	
 </head>
 <body>
+
+
+
+
 
 	<!-- Container -->
 	<div id="container">
@@ -37,8 +44,13 @@
 						<div class="col-lg-6">
 							<div class="right-top-line">
 								<ul class="top-menu">
-									<li><a href="#">Purchase Now</a></li>
-									<li><a href="about.html">About</a></li>
+									
+									
+
+							
+
+
+									<li><a href="{{url('about')}}">About</a></li>
 									<li><a href="blog.html">News</a></li>
 								</ul>
 								<button class="search-icon">
@@ -48,9 +60,9 @@
 								</button>
 
 								<button class="shop-icon">
-									<i class="material-icons">shopping_cart</i>
+									<a href="{{url('cart')}}">
+									<i class="material-icons">shopping_cart</i></a>
 									<span class="studiare-cart-number">0 </span>
-
 								</button>
 								
 								
@@ -73,44 +85,62 @@
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container">
+
+					<a class="navbar-brand" href="index.html">
 				@foreach($nav as $p)
-					<img src="{{ url('/upload/'.$p->image) }}">
+					<img src="{{ url('/upload/'.$p->image) }}" style="height: 70px; width: 220px;">
 				@endforeach
+					</a>
 					<a href="#" class="mobile-nav-toggle"> 
 						<span></span>
 					</a>
 
+
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							<li class="drop-link">
+							<li>
 								<a class="active" href="{{url('/')}}">Home</a>
 							</li>
-							
-							<li class="drop-link">
+							<li>
 								<a href="{{url('courses')}}">Courses</a>
 							</li>
-
-							<li>
-								<a href="{{url('ourteam')}}">Our Team</a>
+							<li class="drop-link">
+								<a href="#">Workshop <i class="fa fa-angle-down"></i></a>
+								<ul class="dropdown">
+									<li>
+									<a href="{{url('mi')}}">Xiaomi MI Company</a>
+									</li>
+									<li>
+							<a href="{{url('bentchair')}}">Bentchair Company</a>
+									</li>
+									<li>
+										<a href="{{url('mpct')}}">MPCT College</a>
+									</li>
+									<li>
+										<a href="{{url('rjit')}}">RJIT College</a>
+									</li>
+								</ul>
 							</li>
-
-							<li>
-								<a href="{{url('placement')}}">Placements</a>
-							</li>
-
-							<li>
-								<a href="{{url('intern')}}">Interns</a>
-							</li>
-
-
-							<li>
-								<a href="{{url('contect')}}">Contact</a>
-							</li>
+							<li><a href="{{url('ourteam')}}">Our Team</a></li>
+							<li><a href="{{url('placement')}}">Placement</a></li>
+							<li><a href="{{url('intern')}}">Interns</a></li>
+							<li><a href="{{url('contect')}}">Contact</a></li>
 						</ul>
-						<span><a href="{{url('front/signup')}}" class="register-modal-opener login-button">Sign up</a>     
+						<a href="{{url('front/signup')}}" class="register-modal-opener ">
+							<input style="border-radius:15px;margin-left:10px;" class="btn btn-warning" type="submit" name="submit" value="Signup"></a>
+						<a href="{{url('front/login')}}" class="register-modal-opener ">
+							<input style="border-radius:15px;margin-left:10px;" class="btn btn-warning" type="submit" name="submit" value="Login"></a>
 
-				
-						<a href="{{('front/login')}}" class="register-modal-opener login-button">Log in</a></span>
+							
+            <a class="register-modal-opener " href="{{ route('logout') }}" class="nav-link" 
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              
+              	<input style="border-radius:15px;margin-left:10px;" class="btn btn-warning" type="button" name="submit" value="Logout">
+              
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+            </form>
 					</div>
 				</div>
 			</nav>
@@ -143,7 +173,7 @@
 						</li>
 						
 						<li>
-							<a href="{{url('ourteam')}}">Our Team</a>
+							<a href="{{url('ourteam')}}">OurTeam</a>
 						</li>
 
 						<li>
@@ -157,12 +187,17 @@
 						<li>
 							<a href="{{url('contect')}}">Contact</a>
 						</li>
+
+						
 					</ul>
 					
 				</nav>
 				<button><a href="{{url('front/signup')}}" class="register-modal-opener login-button">Sign up</a></button>
 				
-				<button><a href="{{('front/login')}}" class="register-modal-opener login-button">Log in</a></button>
+				<button><a href="{{url('front/login')}}" class="register-modal-opener login-button">Log in</a></button>
+
+
+				
 			</div>
 
 		</header>
@@ -399,5 +434,18 @@
 	</script>	
 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

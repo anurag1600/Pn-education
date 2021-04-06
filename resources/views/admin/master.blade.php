@@ -191,6 +191,33 @@
             </a>
           </li>
 
+           <li class="nav-item">
+            <a href="{{url('admin/modal')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                 Modal
+             </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a href="{{url('admin/workshop')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                 Workshop
+             </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{url('admin/coupan')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                 Coupan
+             </p>
+            </a>
+          </li>
+
 
           
 

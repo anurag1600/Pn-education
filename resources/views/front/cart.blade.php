@@ -7,7 +7,13 @@
 
 
 
+@if(session('message'))
 
+		     <p class ="alert alert-success">
+		     	{{session('message')}}
+		     </p>
+		     	
+		@endif
 
 <!-- page-banner-section 
 			================================================== -->
@@ -43,6 +49,9 @@
 									</tr>
 								</thead>
 								<tbody>
+
+
+									<?php $total_amount=0; ?> 
 									@foreach($cart as $v)
 									<tr>
 										<td class="product-remove">
@@ -57,13 +66,36 @@
 										<td class="product-price">
 											{{$v->price}}
 										</td>
+
+
 										<td class="product-quantity">
-											<input type="number" value="1"/>
+
+											<a href="{{url('cart/update_quantity/'.$v->id.'/1')}}">+</a>
+
+											<input type="text" name="quantity" value="{{$v->quantity}}">
+
+											<a href="{{url('cart/update_quantity/'.$v->id.'/-1')}}">-</a>
 										</td>
-										<td class="product-subtotal">{{$v->price}}</td>
+										
+
+										<td class="product-subtotal">{{$v->price*$v->quantity}}</td>
 									</tr>
-									
+
+							<?php $total_amount=$total_amount+($v->price*$v->quantity); ?>
+
+
+
 									@endforeach
+									<tr class="coupon-line"> 
+										<td colspan="6" class="actions">
+											<input type="text" name="coupon_code" placeholder="Coupon code">
+											<button type="submit">Update cart</button>
+										</td>
+									</tr>
+
+
+									
+									
 								</tbody>
 							</table>
 						</div>
@@ -76,15 +108,15 @@
 									<tbody>
 										<tr class="cart-subtotal">
 											<th>Subtotal</th>
-											<td>{{$v->price}}</td>
+											<td><?php echo $total_amount; ?></td>
 										</tr>
 										<tr class="order-total">
 											<th>Total</th>
-											<td>{{$v->price}}</td>
+											<td><?php echo $total_amount; ?></td>
 										</tr>
 									</tbody>
 								</table>
-								<a href="checkout.html" class="checkout-button">Proceed to checkout</a>
+								<a href="{{url('front/login')}}" class="checkout-button">Proceed to checkout</a>
 							</div>
 						</div>
 					</div>

@@ -263,11 +263,11 @@
 								</p>
 
 								
-								<input type="button" class="form-control btn btn-success" value=" Take This Course">
+								<input type="submit" class="form-control btn btn-success" value="Take This Course">
 								<br>
 								<br>
 
-								<input type="button" class="form-control btn btn-success" value=" Go To Cart">
+								<input type="submit" class="form-control btn btn-success" value=" Go To Cart">
 
 								
 								

@@ -7,7 +7,7 @@
 
 
 <!-- map section -->
-		<div id="map"></div>
+		<div id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.6287734169687!2d78.20696011434966!3d26.208751696349736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c3a3faabd5e3%3A0x88d563b9d79500ed!2sPN%20INFOSYS!5e0!3m2!1sen!2sin!4v1615888268473!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
 		<!-- end map section -->
 
 		<!-- contact-section 
@@ -101,4 +101,15 @@
 		</section>
 		<!-- End contact-info section -->
 
+
+
+<script src="{{url('js/studiare-plugins.min.js')}}"></script>
+	<script src="{{url('js/jquery.countTo.js')}}"></script>
+	<script src="{{url('js/popper.js')}}"></script>
+	<script src="{{url('js/bootstrap.min.js')}}"></script>
+    <script src="mix.js('resources/js/app.js', 'public/js')
+    .sourceMaps();"></script>
+	<script src="{{url('js/gmap3.min.js')}}"></script>
+	<script src="{{url('js/script.js')}}"></script>
+	
 		@endsection

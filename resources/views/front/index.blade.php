@@ -4,7 +4,55 @@
 
 
 @section("content")
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+	<script> $(document).ready(function(){ $('#mymodel').modal('show');}); </script>
+
+
+</head>
+<body>
+
+<div class="modal fade" id="mymodel" style="padding-top: 145px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-info lg">
+        <h5 class="modal-title" >Notifications</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	
+      	@foreach($show as $s)
+        
+        <ul>
+			<li>
+			    <p>{{$s->discription}}</p>
+			</li>
+		</ul>
+
+		@endforeach
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
 		
+
 
 		<!-- home-section 
 			================================================== -->
@@ -132,18 +180,14 @@
 							</a>
 							</li>
 							@endforeach
-						
-
-
-
-
-
-						
-
+				
 					</ul>
-					<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+
+					<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;">
+					</div>
 				</div>
 			</div>
+
 			<!-- END REVOLUTION SLIDER -->
 		</section>
 		<!-- End home section -->
@@ -173,6 +217,7 @@
 					</div>
 				</div>
 			</div>
+
 		</section>
 		<!-- End feature section -->
 
@@ -216,7 +261,7 @@
 									</a>
 								</div>
 							</div>
-							
+						
 							@elseif($i==3)
 							<div class="collection-post">
 								<div class="inner-collection">
@@ -254,7 +299,6 @@
 						<?php $i++ ?>
 						@endforeach
 					</div>
-						
 				</div>
 			</div>
 		</section>
@@ -296,6 +340,7 @@
 					<a class="button-two" href="#">Get my free book</a>
 				</div>
 			</div>
+
 		</section>
 		<!-- End countdown section -->
 
@@ -357,10 +402,9 @@
 							</div>
 						</div>
 
-					</div>
-				</div>
-			</div>
+
 		</section>
+
 		<!-- End popular-courses section -->
 
 		
@@ -435,10 +479,14 @@
 							</div>
 						</div>
 
-					</div>
-				</div>
-			</div>
+					</div></div></div>
 		</section>
 		<!-- End testimonial section -->
+
+</body>
+</html>
+
+
+
 
 		@endsection
